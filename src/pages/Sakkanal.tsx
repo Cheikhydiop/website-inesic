@@ -14,7 +14,7 @@ const Sakkanal: React.FC = () => {
             <span className="subtitle">Plateforme d'Efficacité Énergétique</span>
             <h1 className="hero-title">
               <span className="gradient-text">Sakkanal</span> - 
-              L'énergie intelligente pour l'Afrique
+              L'énergie intelligente pour l\'Afrique
             </h1>
             <p className="hero-text">
               Découvrez notre plateforme révolutionnaire qui transforme la gestion de l'énergie 
