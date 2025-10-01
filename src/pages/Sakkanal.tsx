@@ -22,8 +22,8 @@ const Sakkanal: React.FC = () => {
               énergétique et réduire vos coûts de 30% en moyenne.
             </p>
             <div className="hero-cta">
-              <button className="hero-btn pulse-effect">Demander une démo</button>
-              <button className="hero-btn outline glow-effect">Voir les tarifs</button>
+              <button className="hero-btn pulse-effect" onClick={() => window.location.href = '/sakkanal/qualification'}>Trouver ma solution</button>
+              <button className="hero-btn outline glow-effect" onClick={() => window.location.href = '/contact'}>Demander une démo</button>
             </div>
           </div>
           
@@ -252,8 +252,8 @@ const Sakkanal: React.FC = () => {
             <h2>Prêt à transformer votre gestion énergétique ?</h2>
             <p>Rejoignez les centaines d'entreprises qui font confiance à Sakkanal</p>
             <div className="cta-buttons">
-              <button className="cta-btn primary">Commencer maintenant</button>
-              <button className="cta-btn secondary">Parler à un expert</button>
+              <button className="cta-btn primary" onClick={() => window.location.href = '/sakkanal/qualification'}>Commencer maintenant</button>
+              <button className="cta-btn secondary" onClick={() => window.location.href = '/contact'}>Parler à un expert</button>
             </div>
             <div className="cta-features">
               <span><i className="fas fa-check"></i> Essai gratuit 30 jours</span>
