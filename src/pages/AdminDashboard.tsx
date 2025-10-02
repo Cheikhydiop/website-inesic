@@ -1,5 +1,7 @@
+// pages/AdminDashboard.tsx
 import React, { useState, useEffect } from 'react';
 import { supabase, type Lead, type LeadInteraction } from '../lib/supabase';
+import { useAnalytics } from '../lib/analytics';
 import Header from '../components/Header';
 import './AdminDashboard.css';
 
@@ -12,6 +14,13 @@ const AdminDashboard: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState<'all' | 'new' | 'contacted' | 'qualified' | 'converted'>('all');
   const [selectedLead, setSelectedLead] = useState<LeadWithInteractions | null>(null);
+  
+  const { trackPageView, trackLeadAction } = useAnalytics();
+
+  useEffect(() => {
+    trackPageView('/admin/dashboard');
+    loadLeads();
+  }, []);
 
   useEffect(() => {
     loadLeads();
@@ -72,34 +81,40 @@ const AdminDashboard: React.FC = () => {
     }
   };
 
+  const handleLeadClick = (lead: LeadWithInteractions) => {
+    setSelectedLead(lead);
+    trackLeadAction('view_lead_details', lead.id, {
+      lead_status: lead.status,
+      company_name: lead.company_name
+    });
+  };
+
+  const handleEmailClick = (lead: LeadWithInteractions) => {
+    trackLeadAction('click_email', lead.id);
+  };
+
+  const handlePhoneClick = (lead: LeadWithInteractions) => {
+    trackLeadAction('click_phone', lead.id);
+  };
+
   const getStatusBadgeClass = (status: string): string => {
-    switch (status) {
-      case 'new':
-        return 'status-new';
-      case 'contacted':
-        return 'status-contacted';
-      case 'qualified':
-        return 'status-qualified';
-      case 'converted':
-        return 'status-converted';
-      default:
-        return '';
-    }
+    const classes: Record<string, string> = {
+      new: 'status-new',
+      contacted: 'status-contacted',
+      qualified: 'status-qualified',
+      converted: 'status-converted'
+    };
+    return classes[status] || '';
   };
 
   const getStatusLabel = (status: string): string => {
-    switch (status) {
-      case 'new':
-        return 'Nouveau';
-      case 'contacted':
-        return 'Contacté';
-      case 'qualified':
-        return 'Qualifié';
-      case 'converted':
-        return 'Converti';
-      default:
-        return status;
-    }
+    const labels: Record<string, string> = {
+      new: 'Nouveau',
+      contacted: 'Contacté',
+      qualified: 'Qualifié',
+      converted: 'Converti'
+    };
+    return labels[status] || status;
   };
 
   const formatDate = (dateString: string): string => {
@@ -130,8 +145,13 @@ const AdminDashboard: React.FC = () => {
           <div className="dashboard-header">
             <h1>Tableau de bord <span className="gradient-text">Administrateur</span></h1>
             <p>Gestion des leads et qualification commerciale</p>
+            
+            <a href="/admin/analytics" className="btn-analytics">
+              Voir les Analytics
+            </a>
           </div>
 
+          {/* Section Stats principales */}
           <div className="stats-grid">
             <div className="stat-card" onClick={() => setFilter('all')}>
               <div className="stat-icon">
@@ -184,6 +204,7 @@ const AdminDashboard: React.FC = () => {
             </div>
           </div>
 
+          {/* Section Liste des leads */}
           <div className="leads-section">
             <div className="section-header">
               <h2>Liste des leads</h2>
@@ -247,7 +268,7 @@ const AdminDashboard: React.FC = () => {
                   </thead>
                   <tbody>
                     {leads.map((lead) => (
-                      <tr key={lead.id} onClick={() => setSelectedLead(lead)}>
+                      <tr key={lead.id} onClick={() => handleLeadClick(lead)}>
                         <td>
                           <strong>{lead.company_name}</strong>
                         </td>
@@ -255,7 +276,15 @@ const AdminDashboard: React.FC = () => {
                           <div className="contact-info">
                             <div>{lead.contact_name}</div>
                             <div className="contact-details">
-                              <a href={`mailto:${lead.email}`}>{lead.email}</a>
+                              <a 
+                                href={`mailto:${lead.email}`}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  handleEmailClick(lead);
+                                }}
+                              >
+                                {lead.email}
+                              </a>
                             </div>
                           </div>
                         </td>
@@ -273,7 +302,7 @@ const AdminDashboard: React.FC = () => {
                               className="btn-icon"
                               onClick={(e) => {
                                 e.stopPropagation();
-                                setSelectedLead(lead);
+                                handleLeadClick(lead);
                               }}
                               title="Voir détails"
                             >
@@ -291,6 +320,7 @@ const AdminDashboard: React.FC = () => {
         </div>
       </section>
 
+      {/* Modal détails lead */}
       {selectedLead && (
         <div className="modal-overlay" onClick={() => setSelectedLead(null)}>
           <div className="modal-content lead-details" onClick={(e) => e.stopPropagation()}>
@@ -315,13 +345,23 @@ const AdminDashboard: React.FC = () => {
                 <div className="detail-item">
                   <span className="detail-label">Email</span>
                   <span className="detail-value">
-                    <a href={`mailto:${selectedLead.email}`}>{selectedLead.email}</a>
+                    <a 
+                      href={`mailto:${selectedLead.email}`}
+                      onClick={() => handleEmailClick(selectedLead)}
+                    >
+                      {selectedLead.email}
+                    </a>
                   </span>
                 </div>
                 <div className="detail-item">
                   <span className="detail-label">Téléphone</span>
                   <span className="detail-value">
-                    <a href={`tel:${selectedLead.phone}`}>{selectedLead.phone}</a>
+                    <a 
+                      href={`tel:${selectedLead.phone}`}
+                      onClick={() => handlePhoneClick(selectedLead)}
+                    >
+                      {selectedLead.phone}
+                    </a>
                   </span>
                 </div>
               </div>
