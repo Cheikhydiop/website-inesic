@@ -120,7 +120,7 @@ export default function AppLayout() {
         {!collapsed && (
           <div className="px-4 py-8">
             <div className="px-5 py-4 bg-gradient-to-r from-orange-50 to-white border-2 border-sonatel-orange/30 rounded-2xl text-[13px] font-black text-sonatel-orange flex items-center justify-between group cursor-pointer hover:border-sonatel-orange/60 transition-all shadow-sm">
-              <span>DG/SECUR/SUR</span>
+              <span>SmartAudit DG-SECU/Sonatel</span>
               <ChevronDown className="w-5 h-5 text-sonatel-orange" />
             </div>
           </div>

@@ -133,7 +133,7 @@ export default function Auth({ type }: AuthProps = {}) {
 
           toast({
             title: 'Connexion réussie',
-            description: 'Bienvenue sur SmartInspect 360 !',
+            description: 'Bienvenue sur SmartAudit DG-SECU/Sonatel !',
           });
 
           let userRole = result.user?.role;
@@ -231,9 +231,9 @@ export default function Auth({ type }: AuthProps = {}) {
   const getDescription = () => {
     switch (mode) {
       case 'login':
-        return 'Connectez-vous à votre espace SmartInspect 360';
+        return 'Connectez-vous à votre espace SmartAudit DG-SECU/Sonatel';
       case 'register':
-        return 'Créez votre compte SmartInspect 360';
+        return 'Créez votre compte SmartAudit DG-SECU/Sonatel';
       case 'forgot':
         return 'Entrez votre email pour recevoir un lien de réinitialisation';
       case 'reset':

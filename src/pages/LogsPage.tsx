@@ -337,7 +337,7 @@ export default function LogsPage() {
                         Journal d'Audit
                     </h1>
                     <p className="text-sm font-bold text-muted-foreground uppercase tracking-widest mt-2 ml-1">
-                        Traçabilité complète des actions — SmartInspect 360
+                        Traçabilité complète des actions — SmartAudit DG-SECU/Sonatel
                     </p>
                 </div>
                 <div className="flex gap-3">

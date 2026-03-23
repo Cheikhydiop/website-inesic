@@ -108,7 +108,7 @@ export default defineConfig(({ mode }) => ({
         ],
       },
       manifest: {
-        name: "DG/SECU — SmartInspect 360",
+        name: "DG/SECU — SmartAudit DG-SECU/Sonatel",
         short_name: "SmartInspect",
         description: "Application officielle d'audit de sécurité - Sonatel DG/SECU",
         theme_color: "#FF7900",

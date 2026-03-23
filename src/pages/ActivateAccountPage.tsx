@@ -73,7 +73,7 @@ export default function ActivateAccountPage() {
                     <img src="/logo-sonatel.png" alt="Sonatel" className="h-16 mx-auto drop-shadow-sm" />
                     <div>
                         <h1 className="text-3xl font-black text-gray-900 tracking-tight">Bienvenue sur</h1>
-                        <p className="text-xs font-black text-sonatel-orange uppercase tracking-[0.3em] mt-1">SmartInspect 360 Activation</p>
+                        <p className="text-xs font-black text-sonatel-orange uppercase tracking-[0.3em] mt-1">SmartAudit DG-SECU/Sonatel Activation</p>
                     </div>
                 </div>
 

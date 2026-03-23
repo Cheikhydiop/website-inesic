@@ -1,5 +1,5 @@
 /**
- * LogService - SmartInspect 360
+ * LogService - SmartAudit DG-SECU/Sonatel
  * Service for fetching activity logs from the backend
  */
 import { BaseService, ApiResponse } from './BaseService';

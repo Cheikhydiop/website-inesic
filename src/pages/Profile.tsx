@@ -310,8 +310,8 @@
 //                       try {
 //                         const url = `${window.location.origin}/auth?ref=${user?.referralCode}`;
 //                         await navigator.share({
-//                           title: 'SmartInspect 360',
-//                           text: `Rejoins-moi sur SmartInspect 360 pour réaliser vos audits ! Inscris-toi ici :`,
+//                           title: 'SmartAudit DG-SECU/Sonatel',
+//                           text: `Rejoins-moi sur SmartAudit DG-SECU/Sonatel pour réaliser vos audits ! Inscris-toi ici :`,
 //                           url: url
 //                         });
 //                       } catch (err) { console.error(err); }
@@ -448,7 +448,7 @@
 
 //         {/* Version */}
 //         <p className="text-center text-xs text-muted-foreground pb-4">
-//           SmartInspect 360 v1.0.0
+//           SmartAudit DG-SECU/Sonatel v1.0.0
 //         </p>
 //       </div>
 //     </AppLayout>

@@ -1,5 +1,5 @@
 /**
- * InvitationService - SmartInspect 360
+ * InvitationService - SmartAudit DG-SECU/Sonatel
  * PB-015: Système d'invitation par email
  */
 import { BaseService, ApiResponse } from './BaseService';

@@ -254,7 +254,7 @@ export default function Settings() {
 
                     {/* Info version */}
                     <div className="text-center text-sm text-muted-foreground space-y-1">
-                        <p className="font-bold text-[10px] uppercase tracking-widest text-gray-400">SmartInspect 360 v2.1.0</p>
+                        <p className="font-bold text-[10px] uppercase tracking-widest text-gray-400">SmartAudit DG-SECU/Sonatel v2.1.0</p>
                         <p>© 2026 Direction Securité DG/SECU</p>
                     </div>
                 </div>
